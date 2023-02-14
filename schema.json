@@ -5,54 +5,199 @@
   "type": "object",
   "required": [],
   "properties": {
-    "cholmod_batch_size": {},
-    "compress_grids": {},
-    "connect_four_neighbors_only": {},
-    "connect_using_avg_resistances": {},
-    "data_type": {},
-    "ground_file": {},
-    "ground_file_is_resistances": {},
-    "habitat_file": {},
-    "habitat_map_is_resistances": {},
-    "included_pairs_file": {},
-    "log_file": {},
-    "log_level": {},
-    "log_transform_maps": {},
-    "low_memory_mode": {},
-    "mask_file": {},
-    "max_parallel": {},
-    "output_file": {},
-    "parallelize": {},
-    "point_file": {},
-    "polygon_file": {},
-    "precision": {},
-    "preemptive_memory_release": {},
-    "print_rusages": {},
-    "print_timings": {},
-    "profiler_log_file": {},
-    "reclass_file": {},
-    "remove_src_or_gnd": {},
-    "scenario": {},
-    "screenprint_log": {},
-    "set_focal_node_currents_to_zero": {},
-    "set_null_currents_to_nodata": {},
-    "set_null_voltages_to_nodata": {},
-    "solver": {},
-    "source_file": {},
-    "suppress_messages": {},
-    "use_64bit_indexing": {},
-    "use_direct_grounds": {},
-    "use_included_pairs": {},
-    "use_mask": {},
-    "use_polygons": {},
-    "use_reclass_table": {},
-    "use_unit_currents": {},
-    "use_variable_source_strengths": {},
-    "variable_source_file": {},
-    "version": {},
-    "write_as_tif": {},
-    "write_cum_cur_map_only": {},
-    "write_cur_maps": {},
-    "write_max_cur_maps": {}
+    "cholmod_batch_size": {
+      "type": "number",
+      "default": 1000
+    },
+    "compress_grids": {
+      "type": "boolean",
+      "default": false
+    },
+    "connect_four_neighbors_only": {
+      "type": "boolean",
+      "default": false
+    },
+    "connect_using_avg_resistances": {
+      "type": "boolean",
+      "default": false
+    },
+    "data_type": {
+      "type": "string",
+      "default": "raster",
+      "enum": ["raster", "network"]
+    },
+    "ground_file": {
+      "type": "string"
+    },
+    "ground_file_is_resistances": {
+      "type": "boolean",
+      "default": true
+    },
+    "habitat_file": {
+      "type": "string"
+    },
+    "habitat_map_is_resistances": {
+      "type": "boolean",
+      "default": true
+    },
+    "included_pairs_file": {
+      "type": "string"
+    },
+    "log_file": {
+      "type": "string"
+    },
+    "log_level": {
+      "type": "string",
+      "default": "INFO",
+      "enum": ["INFO", "DEBUG", "WARNING"]
+    },
+    "log_transform_maps": {
+      "type": "boolean",
+      "default": false
+    },
+    "low_memory_mode": {
+      "type": "boolean",
+      "default": false
+    },
+    "mask_file": {
+      "type": "string"
+    },
+    "max_parallel": {
+      "type": "number",
+      "default": 0
+    },
+    "output_file": {
+      "type": "string"
+    },
+    "parallelize": {
+      "type": "boolean",
+      "default": false
+    },
+    "point_file": {
+      "type": "string"
+    },
+    "polygon_file": {
+      "type": "string"
+    },
+    "precision": {
+      "type": "string",
+      "default": "Double",
+      "enum": ["Single", "Double"]
+    },
+    "preemptive_memory_release": {
+      "type": "boolean",
+      "default": false
+    },
+    "print_rusages": {
+      "type": "boolean",
+      "default": false
+    },
+    "print_timings": {
+      "type": "boolean",
+      "default": false
+    },
+    "profiler_log_file": {
+      "type": "string",
+      "default": null
+    },
+    "reclass_file": {
+      "type": "string",
+      "default": null
+    },
+    "remove_src_or_gnd": {
+      "type": "string",
+      "default": "keepall",
+      "enum": ["keepall"],
+      "description": "there must be other values but I can't find them"
+    },
+    "scenario": {
+      "type": "string",
+      "default": null,
+      "enum": ["ADVANCED", "ALLTOONE", "ONETOALL", "PAIRWISE"]
+    },
+    "screenprint_log": {
+      "type": "boolean",
+      "default": false
+    },
+    "set_focal_node_currents_to_zero": {
+      "type": "boolean",
+      "default": false
+    },
+    "set_null_currents_to_nodata": {
+      "type": "boolean",
+      "default": false
+    },
+    "set_null_voltages_to_nodata": {
+      "type": "boolean",
+      "default": false
+    },
+    "solver": {
+      "type": "string",
+      "default": "cg+amg",
+      "enum": ["cg+amg", "cholmod", "mklpardiso"]
+    },
+    "source_file": {
+      "type": "string"
+    },
+    "suppress_messages": {
+      "type": "boolean",
+      "default": false
+    },
+    "use_64bit_indexing": {
+      "type": "boolean",
+      "default": true
+    },
+    "use_direct_grounds": {
+      "type": "boolean",
+      "default": false
+    },
+    "use_included_pairs": {
+      "type": "boolean",
+      "default": false
+    },
+    "use_mask": {
+      "type": "boolean",
+      "default": false
+    },
+    "use_polygons": {
+      "type": "boolean",
+      "default": false
+    },
+    "use_reclass_table": {
+      "type": "boolean",
+      "default": false
+    },
+    "use_unit_currents": {
+      "type": "boolean",
+      "default": false
+    },
+    "use_variable_source_strengths": {
+      "type": "boolean",
+      "default": false
+    },
+    "variable_source_file": {
+      "type": "string",
+      "default": null
+    },
+    "version": {
+      "type": "string",
+      "default": "5.0.0"
+    },
+    "write_as_tif": {
+      "type": "boolean",
+      "default": false
+    },
+    "write_cum_cur_map_only": {
+      "type": "boolean",
+      "default": false
+    },
+    "write_cur_maps": {
+      "type": "boolean",
+      "default": false
+    },
+    "write_max_cur_maps": {
+      "type": "boolean",
+      "default": false
+    }
   }
 }
