@@ -3,48 +3,62 @@
   "$id": "https://raw.githubusercontent.com/jessjaco/circuitscape-schema/main/schema.json",
   "description": "Options supported by Circuitscape config.ini files",
   "type": "object",
+  "definitions": {
+    "path": {
+      "type": "string"
+    }
+  },
   "required": [],
   "properties": {
     "cholmod_batch_size": {
+      "name": "Cholmod Batch Size",
       "type": "number",
       "default": 1000
     },
     "compress_grids": {
+      "name": "Compress grids",
       "type": "boolean",
       "default": false
     },
     "connect_four_neighbors_only": {
+      "name": "Connect four neighbors only",
       "type": "boolean",
       "default": false
     },
     "connect_using_avg_resistances": {
+      "name": "Connect using average resistances",
       "type": "boolean",
       "default": false
     },
     "data_type": {
+      "name": "Data type",
       "type": "string",
       "default": "raster",
       "enum": ["raster", "network"]
     },
     "ground_file": {
-      "type": "string"
+      "name": "Ground file",
+      "$ref": "#/definitions/path"
     },
     "ground_file_is_resistances": {
+      "name": "Ground file is resistances",
       "type": "boolean",
       "default": true
     },
     "habitat_file": {
-      "type": "string"
+      "name": "Habitat file",
+      "$ref": "#/definitions/path"
     },
     "habitat_map_is_resistances": {
+      "name": "Habitat map is resistances",
       "type": "boolean",
       "default": true
     },
     "included_pairs_file": {
-      "type": "string"
+      "$ref": "#/definitions/path"
     },
     "log_file": {
-      "type": "string"
+      "$ref": "#/definitions/path"
     },
     "log_level": {
       "type": "string",
@@ -60,24 +74,24 @@
       "default": false
     },
     "mask_file": {
-      "type": "string"
+      "$ref": "#/definitions/path"
     },
     "max_parallel": {
       "type": "number",
       "default": 0
     },
     "output_file": {
-      "type": "string"
+      "$ref": "#/definitions/path"
     },
     "parallelize": {
       "type": "boolean",
       "default": false
     },
     "point_file": {
-      "type": "string"
+      "$ref": "#/definitions/path"
     },
     "polygon_file": {
-      "type": "string"
+      "$ref": "#/definitions/path"
     },
     "precision": {
       "type": "string",
@@ -97,18 +111,18 @@
       "default": false
     },
     "profiler_log_file": {
-      "type": "string",
+      "$ref": "#/definitions/path",
       "default": null
     },
     "reclass_file": {
-      "type": "string",
+      "$ref": "#/definitions/path",
       "default": null
     },
     "remove_src_or_gnd": {
       "type": "string",
       "default": "keepall",
       "enum": ["keepall"],
-      "description": "there must be other values but I can't find them"
+      "comment": "there must be other values but I can't find them"
     },
     "scenario": {
       "type": "string",
@@ -137,7 +151,7 @@
       "enum": ["cg+amg", "cholmod", "mklpardiso"]
     },
     "source_file": {
-      "type": "string"
+      "$ref": "#/definitions/path"
     },
     "suppress_messages": {
       "type": "boolean",
@@ -176,7 +190,7 @@
       "default": false
     },
     "variable_source_file": {
-      "type": "string",
+      "$ref": "#/definitions/path",
       "default": null
     },
     "version": {
