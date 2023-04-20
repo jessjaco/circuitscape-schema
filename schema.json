@@ -8,7 +8,7 @@
             "type": "string"
             }
         },
-        "required": [],
+        "required": ["habitat_file", "scenario"],
         "properties": {
             "cholmod_batch_size": {
             "name": "Cholmod Batch Size",
