@@ -1,257 +1,285 @@
 {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "$id": "https://raw.githubusercontent.com/jessjaco/circuitscape-schema/main/schema.json",
-        "description": "Options supported by Circuitscape config.ini files",
-        "type": "object",
-        "definitions": {
-            "path": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/jessjaco/circuitscape-schema/main/schema.json",
+    "description": "Options supported by Circuitscape config.ini files",
+    "type": "object",
+    "definitions": {
+        "path": {
             "type": "string"
-            }
         },
-        "required": ["habitat_file", "scenario"],
-        "properties": {
-            "cholmod_batch_size": {
+        "folder": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "habitat_file",
+        "scenario",
+        "output_file"
+    ],
+    "properties": {
+        "cholmod_batch_size": {
             "name": "Cholmod Batch Size",
             "type": "number",
             "default": 1000
-            },
-            "compress_grids": {
-            "name": "Compress grids",
+        },
+        "compress_grids": {
+            "name": "Compress output grids",
             "type": "boolean",
             "default": false
-            },
-            "connect_four_neighbors_only": {
-            "name": "Connect four neighbors only",
+        },
+        "connect_four_neighbors_only": {
+            "name": "Connect raster cells to FOUR neighbors instead of EIGHT",
             "type": "boolean",
             "default": false
-            },
-            "connect_using_avg_resistances": {
-            "name": "Connect using average resistances",
+        },
+        "connect_using_avg_resistances": {
+            "name": "Use average resistance instead of conductance for connections between cells",
             "type": "boolean",
             "default": false
-            },
-            "data_type": {
+        },
+        "data_type": {
             "name": "Data type",
             "type": "string",
             "default": "raster",
-            "enum": ["raster", "network"]
-            },
-            "ground_file": {
+            "enum": [
+                "raster",
+                "network"
+            ]
+        },
+        "ground_file": {
             "name": "Ground file",
             "$ref": "#/definitions/path"
-            },
-            "ground_file_is_resistances": {
+        },
+        "ground_file_is_resistances": {
             "name": "Ground file is resistances",
             "type": "boolean",
             "default": true
-            },
-            "habitat_file": {
-            "name": "Habitat file",
+        },
+        "habitat_file": {
+            "name": "Raster resistance map or network/graph",
             "$ref": "#/definitions/path"
-            },
-            "habitat_map_is_resistances": {
-            "name": "Habitat map is resistances",
+        },
+        "habitat_map_is_resistances": {
+            "name": "Input map represents resistances instead of conductances",
             "type": "boolean",
             "default": true
-            },
-            "included_pairs_file": {
+        },
+        "included_pairs_file": {
             "name": "Included pairs file",
             "$ref": "#/definitions/path"
-            },
-            "log_file": {
-            "name": "Log file", 
+        },
+        "log_file": {
+            "name": "Log file",
             "$ref": "#/definitions/path"
-            },
-            "log_level": {
+        },
+        "log_level": {
             "name": "Log level",
             "type": "string",
             "default": "INFO",
-            "enum": ["INFO", "DEBUG", "WARNING"]
-            },
-            "log_transform_maps": {
-            "name": "Log transform maps",
+            "enum": [
+                "INFO",
+                "DEBUG",
+                "WARNING"
+            ]
+        },
+        "log_transform_maps": {
+            "name": "Log transform current maps",
             "type": "boolean",
             "default": false
-            },
-            "low_memory_mode": {
-            "name": "Low memory mode",
+        },
+        "low_memory_mode": {
+            "name": "Run in low-memory mode",
             "type": "boolean",
             "default": false
-            },
-            "mask_file": {
-            "name": "Mask file",
+        },
+        "mask_file": {
+            "name": "Raster mask file",
             "$ref": "#/definitions/path"
-            },
-            "max_parallel": {
+        },
+        "max_parallel": {
             "name": "Max parallel",
             "type": "number",
             "default": 0
-            },
-            "output_file": {
-            "name": "Output file",
-            "$ref": "#/definitions/path"
-            },
-            "parallelize": {
+        },
+        "output_file": {
+            "name": "Base output file name",
+            "type": "string"
+        },
+        "parallelize": {
             "name": "Parallelize",
             "type": "boolean",
             "default": false
-            },
-            "point_file": {
+        },
+        "point_file": {
             "name": "Point file",
             "$ref": "#/definitions/path"
-            },
-            "polygon_file": {
+        },
+        "polygon_file": {
             "name": "Polygon file",
             "$ref": "#/definitions/path"
-            },
-            "precision": {
+        },
+        "precision": {
             "name": "Precision",
             "type": "string",
             "default": "Double",
-            "enum": ["Single", "Double"]
-            },
-            "preemptive_memory_release": {
-            "name": "Pre-emptive memory release",
+            "enum": [
+                "Single",
+                "Double"
+            ]
+        },
+        "preemptive_memory_release": {
+            "name": "Pre-emptively release memory when possible",
             "type": "boolean",
             "default": false
-            },
-            "print_rusages": {
+        },
+        "print_rusages": {
             "name": "Print r-usages",
             "type": "boolean",
             "default": false
-            },
-            "print_timings": {
+        },
+        "print_timings": {
             "name": "Print timing",
             "type": "boolean",
             "default": false
-            },
-            "profiler_log_file": {
+        },
+        "profiler_log_file": {
             "name": "Profiler log file",
             "$ref": "#/definitions/path",
             "default": null
-            },
-            "reclass_file": {
+        },
+        "reclass_file": {
             "name": "Reclass file",
             "$ref": "#/definitions/path",
             "default": null
-            },
-            "remove_src_or_gnd": {
+        },
+        "remove_src_or_gnd": {
             "name": "Remove source or ground",
             "type": "string",
             "default": "keepall",
-            "enum": ["keepall"],
+            "enum": [
+                "keepall"
+            ],
             "comment": "there must be other values but I can't find them"
-            },
-            "scenario": {
+        },
+        "scenario": {
             "name": "Scenario",
             "type": "string",
             "default": null,
-            "enum": ["ADVANCED", "ALLTOONE", "ONETOALL", "PAIRWISE"]
-            },
-            "screenprint_log": {
+            "enum": [
+                "ADVANCED",
+                "ALLTOONE",
+                "ONETOALL",
+                "PAIRWISE"
+            ]
+        },
+        "screenprint_log": {
             "name": "Screenprint log",
             "type": "boolean",
             "default": false
-            },
-            "set_focal_node_currents_to_zero": {
+        },
+        "set_focal_node_currents_to_zero": {
             "name": "Set focal node currents to zero",
             "type": "boolean",
             "default": false
-            },
-            "set_null_currents_to_nodata": {
+        },
+        "set_null_currents_to_nodata": {
             "name": "Set null currents to nodata",
             "type": "boolean",
             "default": false
-            },
-            "set_null_voltages_to_nodata": {
+        },
+        "set_null_voltages_to_nodata": {
             "name": "Set null voltages to nodata",
             "type": "boolean",
             "default": false
-            },
-            "solver": {
+        },
+        "solver": {
             "name": "Solver",
             "type": "string",
             "default": "cg+amg",
-            "enum": ["cg+amg", "cholmod", "mklpardiso"]
-            },
-            "source_file": {
+            "enum": [
+                "cg+amg",
+                "cholmod",
+                "mklpardiso"
+            ]
+        },
+        "source_file": {
             "name": "Source file",
             "$ref": "#/definitions/path"
-            },
-            "suppress_messages": {
+        },
+        "suppress_messages": {
             "name": "Suppress messages",
             "type": "boolean",
             "default": false
-            },
-            "use_64bit_indexing": {
+        },
+        "use_64bit_indexing": {
             "name": "Use 64-bit indexing",
             "type": "boolean",
             "default": true
-            },
-            "use_direct_grounds": {
-            "name": "Use direct grounds",
+        },
+        "use_direct_grounds": {
+            "name": "Use direct connections to ground (R=0) for all ground points",
             "type": "boolean",
             "default": false
-            },
-            "use_included_pairs": {
+        },
+        "use_included_pairs": {
             "name": "Use included pairs",
             "type": "boolean",
             "default": false
-            },
-            "use_mask": {
-            "name": "Use mask",
+        },
+        "use_mask": {
+            "name": "Read raster mask file",
             "type": "boolean",
             "default": false
-            },
-            "use_polygons": {
+        },
+        "use_polygons": {
             "name": "Use polygons",
             "type": "boolean",
             "default": false
-            },
-            "use_reclass_table": {
+        },
+        "use_reclass_table": {
             "name": "Use reclass table",
             "type": "boolean",
             "default": false
-            },
-            "use_unit_currents": {
-            "name": "Use unit currents",
+        },
+        "use_unit_currents": {
+            "name": "Use unit currents (i=1) for all current sources",
             "type": "boolean",
             "default": false
-            },
-            "use_variable_source_strengths": {
+        },
+        "use_variable_source_strengths": {
             "name": "Use variable source strengths",
             "type": "boolean",
             "default": false
-            },
-            "variable_source_file": {
-            "name": "Variable source file",
+        },
+        "variable_source_file": {
+            "name": "Variable source strength file",
             "$ref": "#/definitions/path",
             "default": null
-            },
-            "version": {
+        },
+        "version": {
             "name": "Version",
             "type": "string",
             "default": "5.0.0"
-            },
-            "write_as_tif": {
+        },
+        "write_as_tif": {
             "name": "Write as tif file",
             "type": "boolean",
             "default": false
-            },
-            "write_cum_cur_map_only": {
+        },
+        "write_cum_cur_map_only": {
             "name": "Write cumulative current map only",
             "type": "boolean",
             "default": false
-            },
-            "write_cur_maps": {
+        },
+        "write_cur_maps": {
             "name": "write current maps",
             "type": "boolean",
             "default": false
-            },
-            "write_max_cur_maps": {
+        },
+        "write_max_cur_maps": {
             "name": "Write maximum current maps",
             "type": "boolean",
             "default": false
-            }
         }
-        }
+    }
+}
