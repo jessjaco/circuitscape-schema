@@ -102,8 +102,8 @@
             "default": 0
         },
         "output_file": {
-            "name": "Base output file name",
-            "type": "string"
+            "name": "Base output file name (should end with .out)",
+            "$ref": "#/definitions/path"
         },
         "parallelize": {
             "name": "Parallelize",
