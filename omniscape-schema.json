@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/jessjaco/circuitscape-schema/main/omniscape-schema.json",
+  "description": "Options supported by Omniscape config.ini files",
+  "type": "object",
+  "definitions": {
+    "path": {
+      "type": "string"
+    },
+    "folder": {
+      "type": "string"
+    },
+    "odd_integer": {
+      "type": "number"
+    }
+  },
+  "required": ["resistance_file", "radius", "project_name"],
+  "properties": {
+    "resistance_file": {},
+    "radius": {},
+    "project_name": {},
+    "source_file": {},
+    "block_size": {
+      "name": "Block Size",
+      "$ref": "#/definitions/odd_integer",
+      "default": 1
+    },
+    "source_from_resistance": {
+      "name": "Source from resistance",
+      "type": "boolean",
+      "default": false
+    },
+    "resistance_is_conductance": {
+      "name": "Resistance is conductance",
+      "type": "boolean",
+      "default": false
+    },
+    "r_cutoff": {
+      "name": "Resistance cutoff",
+      "type": "number",
+      "default": 1e1000,
+      "comment": "only applies when source_from_resistance is true"
+    },
+    "buffer": {
+      "name": "Additional buffer distance",
+      "type": "number",
+      "default": 0
+    },
+    "source_threshold": {
+      "name": "Source threshold",
+      "type": "number",
+      "default": 0
+    },
+    "calc_normalized_current": {
+      "name": "Calculate normalized current",
+      "type": "boolean",
+      "default": false
+    },
+    "calc_flow_potential": {
+      "name": "Calculate flow potential",
+      "type": "boolean",
+      "default": false
+    },
+    "allow_different_projections": {
+      "name": "Allow different projections",
+      "type": "boolean",
+      "default": false
+    },
+    "connect_four_neighbors_only": {
+      "name": "Connect four neighbors only",
+      "type": "boolean",
+      "default": false
+    },
+    "solver": {
+      "name": "Solver",
+      "type": "string",
+      "default": "cg+amg",
+      "enum": ["cg+amg", "cholmod"]
+    },
+    "reclassify_resistance": {
+      "name": "Reclassify resistance",
+      "type": "boolean",
+      "default": false
+    },
+    "reclass_table": {
+      "name": "Path to reclass table",
+      "$ref": "#/definitions/path"
+    },
+    "write_reclassified_resistance": {
+      "name": "Write reclassified resistance",
+      "type": "boolean",
+      "default": false
+    },
+    "parallelize": {
+      "name": "Parallelize",
+      "type": "boolean",
+      "default": true
+    },
+    "parallel_batch_size": {
+      "name": "Parallel batch size",
+      "type": "number",
+      "default": 10
+    },
+    "precision": {
+      "name": "Precision",
+      "type": "string",
+      "default": "double",
+      "enum": ["single", "double"]
+    },
+    "write_raw_curmap": {
+      "name": "Write raw current map",
+      "type": "boolean",
+      "default": true
+    },
+    "mask_nodata": {
+      "name": "Mask nodata values",
+      "type": "boolean",
+      "default": true
+    },
+    "write_as_tif": {
+      "name": "Write output as tiff?",
+      "type": "boolean",
+      "default": true
+    },
+    "conditional": {
+      "name": "Should conditional connectivity be used?",
+      "type": "boolean",
+      "default": false
+    },
+    "n_conditions": {
+      "name": "Number of conditional conditions",
+      "type": "number",
+      "default": 1,
+      "enum": [1, 2]
+    },
+    "condition1_file": {
+      "name": "Path to condition 1 file",
+      "$ref": "#/definitions/path"
+    },
+    "comparison1": {
+      "name": "",
+      "type": "string",
+      "enum": ["within", "equal"],
+      "default": "within"
+    },
+    "condition1_lower": {
+      "name": "",
+      "type": "number"
+    },
+    "condition1_upper": {
+      "name": "",
+      "type": "number"
+    },
+    "condition2_file": {
+      "name": "Path to condition 2 file",
+      "$ref": "#/definitions/path"
+    },
+    "comparison2": {
+      "name": "",
+      "type": "string",
+      "enum": ["within", "equal"],
+      "default": "within"
+    },
+    "condition2_lower": {
+      "name": "",
+      "type": "number"
+    },
+    "condition2_upper": {
+      "name": "",
+      "type": "number"
+    },
+    "compare_to_future": {
+      "name": "Which condition to compare to future?",
+      "type": "string",
+      "enum": ["none", "1", "2", "both"]
+    },
+    "condition1_future_file": {
+      "name": "Path to condition 1 future file",
+      "$ref": "#/definitions/path"
+    },
+    "condition2_future_file": {
+      "name": "Path to condition 2 future file",
+      "$ref": "#/definitions/path"
+    }
+  }
+}
+
