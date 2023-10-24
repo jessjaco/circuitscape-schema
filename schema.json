@@ -19,26 +19,31 @@
     "properties": {
         "cholmod_batch_size": {
             "name": "Cholmod Batch Size",
+            "description": "Cholmod Batch Size",
             "type": "number",
             "default": 1000
         },
         "compress_grids": {
             "name": "Compress output grids",
             "type": "boolean",
+            "description": "Output ASCII grids are automatically compressed using the gzip file format. This can be useful when many large maps will be written.",
             "default": false
         },
         "connect_four_neighbors_only": {
-            "name": "Connect raster cells to FOUR neighbors instead of EIGHT",
+            "name": "Connect four neighbors only",
+            "description": "Connect raster cells to FOUR neighbors instead of EIGHT",
             "type": "boolean",
             "default": false
         },
         "connect_using_avg_resistances": {
-            "name": "Use average resistance instead of conductance for connections between cells",
+            "name": "Connect using average resistance",
+            "description": "Use average resistance instead of conductance for connections between cells",
             "type": "boolean",
             "default": false
         },
         "data_type": {
             "name": "Data type",
+            "description": "Will you be analyzing raster or network data?",
             "type": "string",
             "default": "raster",
             "enum": [
@@ -48,32 +53,39 @@
         },
         "ground_file": {
             "name": "Ground file",
-            "$ref": "#/definitions/path"
+            "$ref": "#/definitions/path",
+            "description": "This file specifies locations of ground nodes and resistances or conductances of resistors tying them to ground. Either a raster or a text list may be used. Rasters must have the same cell size, projection, and extent as the resistance grid, and cells that do not contain grounds should be coded with NODATA values. Note that if a direct (R = 0) ground connection conflicts with a current source, the ground will be removed unless the 'remove source' option in the Options Window is chosen."
         },
         "ground_file_is_resistances": {
             "name": "Ground file is resistances",
+            "description": "Ground file represents resistances?",
             "type": "boolean",
             "default": true
         },
         "habitat_file": {
-            "name": "Raster resistance map or network/graph",
+            "name": "Habitat file",
+            "description": "Raster resistance map or network/graph",
             "$ref": "#/definitions/path"
         },
         "habitat_map_is_resistances": {
-            "name": "Input map represents resistances instead of conductances",
+            "name": "Habitat map is resistances",
+            "description": "Input map represents resistances instead of conductances?",
             "type": "boolean",
             "default": true
         },
         "included_pairs_file": {
             "name": "Included pairs file",
+            "description": "This option allows users to only perform calculations on a subset of focal node pairs. Users can either identify pairs to include in calculations, or pairs to exclude, as specified in the first line of the file.This affects all modes except the Advanced Mode. Files should be in tab-delimited text with a .txt extension.",
             "$ref": "#/definitions/path"
         },
         "log_file": {
             "name": "Log file",
-            "$ref": "#/definitions/path"
+            "$ref": "#/definitions/path",
+            "description": "A file to write logs."
         },
         "log_level": {
             "name": "Log level",
+            "description": "The level of logging.",
             "type": "string",
             "default": "INFO",
             "enum": [
@@ -84,42 +96,52 @@
         },
         "log_transform_maps": {
             "name": "Log transform current maps",
+            "description": "Values in output current maps will reflect a log10 transform of current densities, which can be useful for visualizing them in some GIS packages (e.g., ArcView 3.X). Cells with zero current will be re-coded with NODATA values.",
             "type": "boolean",
             "default": false
         },
         "low_memory_mode": {
             "name": "Run in low-memory mode",
+            "description": "Run in low-memory mode?",
             "type": "boolean",
             "default": false
         },
         "mask_file": {
             "name": "Raster mask file",
+            "description": "Cells with negative, zero, or NODATA values in the mask will be dropped from the corresponding resistance map (i.e., treated as complete barriers). Positive integer cells will be retained. File should only contain integers and be in raster format",
             "$ref": "#/definitions/path"
         },
         "max_parallel": {
             "name": "Max parallel",
+            "description": "On Mac OS X and Linux systems, Circuitscape can run iterations in parallel for pairwise mode when focal points, not focal regions, are used. Choose how many processors you would like to devote to Circuitscape runs.",
             "type": "number",
             "default": 0
         },
         "output_file": {
             "name": "Base output file name (should end with .out)",
+            "description": "Choose a directory path and base file name for output files. Resistances, current maps, voltage maps, and configuration files (which save user interface settings and have a .ini extension) will all use this base name, along with appropriate suffixes and extensions.",
             "$ref": "#/definitions/path"
         },
         "parallelize": {
             "name": "Parallelize",
+            "description": "Should computation be parallelized?",
             "type": "boolean",
             "default": false
         },
         "point_file": {
             "name": "Point file",
-            "$ref": "#/definitions/path"
+            "$ref": "#/definitions/path",
+            "description": "This file specifies locations of ground nodes and resistances or conductances of resistors tying them to ground (Figs. 7 and 11). Either a raster or a text list may be used. Rasters must have the same cell size, projection, and extent as the resistance grid, and cells that do not contain grounds should be coded with NODATA values. Note that if a direct (R = 0) ground connection conflicts with a current source, the ground will be removed unless the 'remove source' option in the Options Window is chosen."
         },
         "polygon_file": {
             "name": "Polygon file",
-            "$ref": "#/definitions/path"
+            "$ref": "#/definitions/path",
+            "description": "This file specifies locations of nodes between which effective resistance and current flow are to be calculated. Each focal node should have a unique positive integer ID. Files may be text lists specifying coordinates or appropriate raster grid formats. When a grid is used, it must have the same cell size and extent as the resistance grid. The value stored in each grid cell location refers to the focal node ID. Cells that do not contain focal nodes should be coded with NODATA values. When a text list is used, the value field references the focal node ID.  For raster analyses, focal nodes may occur at points (single cells on the resistance grid) or across regions (Fig. 8). For the latter, a single ID would occupymore than one cell in a grid or more than one pair of coordinates in a text list (and falling within more than one cell in the underlying resistance grid). Cells within a single region would then be collapsed into a single node, as they are when short-circuit region files are used (see below). The difference is that a focal region will be 'burned in' to the resistance grid only for pairwise calculations that include that focal node. As with short-circuit regions, focal regions need not be made up of contiguous cells. For large grids or large numbers of focal nodes, focal regions may require more computation time. When calculating resistances on large raster grids and not creating voltage or current maps, focal points will run much more quickly."
+
         },
         "precision": {
             "name": "Precision",
+            "description": "Single or double precision? Single saves time and space but is less accurate.",
             "type": "string",
             "default": "Double",
             "enum": [
@@ -128,32 +150,38 @@
             ]
         },
         "preemptive_memory_release": {
-            "name": "Pre-emptively release memory when possible",
+            "name": "Pre-emptive memory release",
+            "description": "Pre-emptively release memory when possible?",
             "type": "boolean",
             "default": false
         },
         "print_rusages": {
             "name": "Print r-usages",
+            "description": "Print r-usages?",
             "type": "boolean",
             "default": false
         },
         "print_timings": {
             "name": "Print timing",
+            "description": "Print timing?",
             "type": "boolean",
             "default": false
         },
         "profiler_log_file": {
             "name": "Profiler log file",
             "$ref": "#/definitions/path",
+            "description": "Path to log file for profiler",
             "default": null
         },
         "reclass_file": {
             "name": "Reclass file",
+            "description": "Reclass file",
             "$ref": "#/definitions/path",
             "default": null
         },
         "remove_src_or_gnd": {
             "name": "Remove source or ground",
+            "description": "Remove source or ground? (currently not functioning)",
             "type": "string",
             "default": "keepall",
             "enum": [
@@ -163,6 +191,7 @@
         },
         "scenario": {
             "name": "Scenario",
+            "description": "Modeling mode",
             "type": "string",
             "default": null,
             "enum": [
@@ -174,27 +203,32 @@
         },
         "screenprint_log": {
             "name": "Screenprint log",
+            "description": "Log for screenprint (unknown functionality)",
             "type": "boolean",
             "default": false
         },
         "set_focal_node_currents_to_zero": {
             "name": "Set focal node currents to zero",
             "type": "boolean",
+            "description": "When running raster data in pairwise, all-to-one, and one-to all modes, focal nodes will have zero current in output maps when they are activated. For pairwise mode, cumulative maps will still show currents flowing through focal regions that results from other pairs being activated. This helps to show current flowing through a focal region as it moves between other focal regions in cumulative current maps. This current passing through a focal region can give an idea of the importance of the focal region for connecting other focal region pairs (for an example, see Fig. 5 in Dickson et al. 2013).",
             "default": false
         },
         "set_null_currents_to_nodata": {
             "name": "Set null currents to nodata",
+            "description": "Set null currents to nodata (unknown functionality)",
             "type": "boolean",
             "default": false
         },
         "set_null_voltages_to_nodata": {
             "name": "Set null voltages to nodata",
+            "description": "Set null voltages to nodata (unknown functionality)",
             "type": "boolean",
             "default": false
         },
         "solver": {
             "name": "Solver",
             "type": "string",
+            "description": "The solver to use",
             "default": "cg+amg",
             "enum": [
                 "cg+amg",
@@ -204,56 +238,67 @@
         },
         "source_file": {
             "name": "Source file",
-            "$ref": "#/definitions/path"
+            "$ref": "#/definitions/path",
+            "description": "This file specifies locations and strengths, in amps, of current sources. Either a raster or a text list may be used. Rasters must have the same cell size, projection, and extent as the resistance grid, and cells that do not contain current sources should be coded with NODATA values. Note: current sources may be positive or negative (i.e., they may inject current into the grid or pull current out. Similarly, grounds may either serve as a sink for current or may contribute current if there are negative current sources in the grid)."
         },
         "suppress_messages": {
             "name": "Suppress messages",
+            "description": "Should messages be supressed?",
             "type": "boolean",
             "default": false
         },
         "use_64bit_indexing": {
             "name": "Use 64-bit indexing",
+            "description": "Use 64-bit indexing",
             "type": "boolean",
             "default": true
         },
         "use_direct_grounds": {
-            "name": "Use direct connections to ground (R=0) for all ground points",
+            "name": "Use direct grounds",
             "type": "boolean",
+            "description": "Use direct connections to ground (R=0) for all ground points",
             "default": false
         },
         "use_included_pairs": {
             "name": "Use included pairs",
             "type": "boolean",
+            "description": "This option allows users to only perform calculations on a subset of focal node pairs. Users can either identify pairs to include in calculations, or pairs to exclude, as specified in the first line of the file. This affects all modes except the Advanced Mode. Files should be in tab-delimited text with a .txt extension.",
             "default": false
         },
         "use_mask": {
-            "name": "Read raster mask file",
+            "name": "Use raster mask file",
             "type": "boolean",
+            "description": "Cells with negative, zero, or NODATA values in the mask will be dropped from the corresponding resistance map (i.e., treated as complete barriers). Positive integer cells will be retained. File should only contain integers and be in raster format.",
             "default": false
         },
         "use_polygons": {
             "name": "Use polygons",
+            "description": "Use polygons?",
             "type": "boolean",
             "default": false
         },
         "use_reclass_table": {
             "name": "Use reclass table",
+            "description": "Use reclass table?",
             "type": "boolean",
             "default": false
         },
         "use_unit_currents": {
-            "name": "Use unit currents (i=1) for all current sources",
+            "name": "Use unit currents",
+            "description": "Use unit currents (i=1) for all current sources?",
             "type": "boolean",
             "default": false
         },
         "use_variable_source_strengths": {
             "name": "Use variable source strengths",
+            "description": "Use variable source strengths?",
             "type": "boolean",
             "default": false
         },
         "variable_source_file": {
             "name": "Variable source strength file",
             "$ref": "#/definitions/path",
+            "description": "Path to variable source strength file",
             "default": null
         },
         "version": {
@@ -263,21 +308,25 @@
         },
         "write_as_tif": {
             "name": "Write as tif file",
+            "description": "Write output as TIFF formatted file?",
             "type": "boolean",
             "default": false
         },
         "write_cum_cur_map_only": {
             "name": "Write cumulative current map only",
+            "description": "Write cumulative current map only?",
             "type": "boolean",
             "default": false
         },
         "write_cur_maps": {
-            "name": "write current maps",
+            "name": "Write current maps",
+            "description": "Write output current maps?",
             "type": "boolean",
             "default": false
         },
         "write_max_cur_maps": {
             "name": "Write maximum current maps",
+            "description": "Write maximum current maps?",
             "type": "boolean",
             "default": false
         }
