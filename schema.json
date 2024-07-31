@@ -102,8 +102,8 @@
     },
     "max_parallel": {
       "name": "Max parallel",
-      "description": "On Mac OS X and Linux systems, Circuitscape can run iterations in parallel for pairwise mode when focal points, not focal regions, are used. Choose how many processors you would like to devote to Circuitscape runs.",
-      "type": "number",
+      "description": "Choose how many processors you would like to devote to Circuitscape runs.",
+      "type": "integer",
       "default": 0
     },
     "output_file": {
@@ -281,7 +281,7 @@
       "default": "5.0.0"
     },
     "write_as_tif": {
-      "name": "Write as tif file",
+      "name": "Write outputs as TIFF files",
       "description": "Write output as TIFF formatted file?",
       "type": "boolean",
       "default": false
